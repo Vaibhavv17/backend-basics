@@ -56,6 +56,7 @@ userSchema.pre("save",async function (next) {
 userSchema.methods.isPasswordCorrect = async function(password) {
   return await bcrypt.compare(password, this.password)
 }
+//modern practise isliye 2 token, only expire is different.refresh token is longer. jab tak access token hai tab tak authenticated hon. agar refresh token hai toh har baar password nahi dalna aur agar woh aur database same hai toh new access token miljata hai.
 
 userSchema.methods.generateAccessToken = function (){
   return jwt.sign(
